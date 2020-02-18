@@ -1,0 +1,20 @@
+read -p "Enter a character: " c
+
+case $c in
+	[a,e,i,o,u,A,E,I,O,U])
+		echo "Character is Vowel"
+		;;
+	[A-Z])
+		echo "Character is Upper Case"
+		;;
+	[a-z])
+		echo "Character is Lower Case"
+		;;
+	[0-9])
+		echo "Character is digit"
+		;;
+	*)
+		echo "Character is Special"
+		;;
+esac
+
