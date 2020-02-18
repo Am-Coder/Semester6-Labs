@@ -2,33 +2,21 @@
 const cvs = document.getElementById("snake");
 const ctx = cvs.getContext("2d");
 
+var ag = false;
 // create the unit
 const box = 32;
-
+var speed = 150
 //Difficulty level increase
 const diff = 10
 const obst = 9
 const ob = []
+var obli = 1;
+obl = 1
 ob[0]={
     x :obst*box,
     y :obst*box
 }
-ob[1]={
-    x :(obst+1)*box,
-    y :obst*box
-}
-ob[2]={
-    x :(obst-1)*box,
-    y :obst*box
-}
-ob[3]={
-    x :obst*box,
-    y :(obst+1)*box
-}
-ob[4]={
-    x :obst*box,
-    y :(obst-1)*box
-}
+
 
 
 
@@ -128,7 +116,7 @@ function collision(head,array,ob,diff,score){
 
 
 
-function draw(){
+function draw(speed){
     
     ctx.drawImage(ground,0,0);
     
@@ -145,11 +133,11 @@ function draw(){
     if( d!="" ){
         if( score>diff ){
             ctx.fillStyle = "green";
-            ctx.fillRect(ob[0].x,ob[0].y,box,box);
-            ctx.fillRect(ob[1].x,ob[1].y,box,box);
-            ctx.fillRect(ob[2].x,ob[2].y,box,box);
-            ctx.fillRect(ob[3].x,ob[3].y,box,box);
-            ctx.fillRect(ob[4].x,ob[4].y,box,box);
+            for( let i = 0; i < ob.length ; i++){
+                ctx.fillRect(ob[i].x,ob[i].y,box,box);
+            }
+            
+
         }
         // old head position
         let snakeX = snake[0].x;
@@ -164,14 +152,42 @@ function draw(){
         // if the snake eats the food
         if(snakeX == food.x && snakeY == food.y){
             score+=10;
-            eat.play();
+            // eat.play();
+                    // speed = speed-1;
+
+
             food = {
                 x : Math.floor(Math.random()*17+1) * box,
                 y : Math.floor(Math.random()*15+3) * box
             }
             // we don't remove the tail
+            ob[obl]={
+                x :(obst+obli)*box,
+                y :obst*box
+            }
+            obl++;
+            ob[obl]={
+                x :(obst-obli)*box,
+                y :obst*box
+            }
+            obl++;
+            ob[obl]={
+                x :obst*box,
+                y :(obst+obli)*box
+            }
+            obl++;
+            ob[obl]={
+                x :obst*box,
+                y :(obst-obli)*box
+            }
+            obl++;
+            obli++;
+            
+            // clearInterval(game);
+            // let game = setInterval(function(){draw(speed)},300*10/score);
         }else{
             // remove the tail
+            
             snake.pop();
         }
         
@@ -188,15 +204,19 @@ function draw(){
             dead.play();
         }
         
+
         snake.unshift(newHead);
+      
     }
     ctx.fillStyle = "white";
     ctx.font = "45px Changa one";
     ctx.fillText(score,2*box,1.6*box);
+ 
+
 }
 
 
-let game = setInterval(draw,100);
+var game = setInterval(function(){draw(speed)},300);
 
 
 
