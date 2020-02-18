@@ -1,0 +1,17 @@
+echo -n "Enter first number : "
+read n1
+ 
+echo -n "Enter second number : "
+read n2
+ 
+if [ $n2 -gt $n1 ];
+then
+  for(( i=$n1; i<=$n2; i++ ))
+  do
+    test=$(( $i % 2 ))
+    if [ $test -ne 1 ]; 
+    then
+      echo $i
+    fi   
+  done
+fi
