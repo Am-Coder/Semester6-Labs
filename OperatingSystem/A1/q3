@@ -1,0 +1,8 @@
+#!/bin/sh
+read FILE
+if [ -d "$FILE" ]; then
+    echo "$FILE is a directory"
+else 
+    echo "Not a directory"
+fi
+

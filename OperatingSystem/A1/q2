@@ -1,0 +1,20 @@
+#!/bin/sh
+
+echo Give your choice:
+echo 1. Number of Users
+echo 2. Calendar
+echo 3. Date
+
+read var1
+case $var1 in
+	1)	who -q;;
+
+	2)	cal -y;;
+
+	3)	date;;
+
+	*)	echo "Wrong Option Choosen";;
+esac	
+
+
+

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "The Number of files are:"
+ls | wc -l

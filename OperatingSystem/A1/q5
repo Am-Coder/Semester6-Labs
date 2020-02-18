@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Give File 1:"
+read FILE1
+echo "Give File 2:"
+read FILE2
+
+cp $FILE1 $FILE2
