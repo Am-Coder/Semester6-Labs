@@ -1,0 +1,12 @@
+#!/bin/sh
+read -p "Give filename" fl
+
+if [ -f $fl ];
+then 
+	echo "Regular File"
+elif [ -h $fl ];
+then
+	echo "Symboli link"
+else
+	echo "NOT supported"
+fi
